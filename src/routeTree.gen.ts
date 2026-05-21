@@ -9,8 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LicensingRouteImport } from './routes/licensing'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BeatsRouteImport } from './routes/beats'
 import { Route as IndexRouteImport } from './routes/index'
 
+const LicensingRoute = LicensingRouteImport.update({
+  id: '/licensing',
+  path: '/licensing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeatsRoute = BeatsRouteImport.update({
+  id: '/beats',
+  path: '/beats',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +37,61 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/beats': typeof BeatsRoute
+  '/contact': typeof ContactRoute
+  '/licensing': typeof LicensingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/beats': typeof BeatsRoute
+  '/contact': typeof ContactRoute
+  '/licensing': typeof LicensingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/beats': typeof BeatsRoute
+  '/contact': typeof ContactRoute
+  '/licensing': typeof LicensingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/beats' | '/contact' | '/licensing'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/beats' | '/contact' | '/licensing'
+  id: '__root__' | '/' | '/beats' | '/contact' | '/licensing'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BeatsRoute: typeof BeatsRoute
+  ContactRoute: typeof ContactRoute
+  LicensingRoute: typeof LicensingRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/licensing': {
+      id: '/licensing'
+      path: '/licensing'
+      fullPath: '/licensing'
+      preLoaderRoute: typeof LicensingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/beats': {
+      id: '/beats'
+      path: '/beats'
+      fullPath: '/beats'
+      preLoaderRoute: typeof BeatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +104,20 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BeatsRoute: BeatsRoute,
+  ContactRoute: ContactRoute,
+  LicensingRoute: LicensingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
