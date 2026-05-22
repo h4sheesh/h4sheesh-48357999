@@ -8,10 +8,10 @@ import { player } from "@/lib/player-store";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "h4sheesh — Beats, Loops & Custom Production" },
-      { name: "description", content: "Buy hard-hitting trap, hip-hop and R&B beats from producer h4sheesh. Instant download, exclusive licensing, custom work." },
-      { property: "og:title", content: "h4sheesh — Beats, Loops & Custom Production" },
-      { property: "og:description", content: "Buy hard-hitting trap, hip-hop and R&B beats from producer h4sheesh." },
+      { title: "h4sheesh — Beaty, loopy a vlastní produkce" },
+      { name: "description", content: "Nakup tvrdé trap, hip-hop a R&B beaty od producenta h4sheesh. Okamžité stažení, exkluzivní licence, zakázková tvorba." },
+      { property: "og:title", content: "h4sheesh — Beaty, loopy a vlastní produkce" },
+      { property: "og:description", content: "Nakup tvrdé trap, hip-hop a R&B beaty od producenta h4sheesh." },
     ],
   }),
   component: Home,

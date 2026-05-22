@@ -44,7 +44,7 @@ export function BeatCard({ beat }: { beat: Beat }) {
           className="mt-4 flex w-full items-center justify-center gap-2 rounded-md border border-border bg-background py-2 text-sm font-medium transition-colors hover:border-ember hover:text-ember disabled:opacity-50"
         >
           <ShoppingCart className="h-4 w-4" />
-          {inCart ? "Added" : "Add to Cart"}
+          {inCart ? "Přidáno" : "Do košíku"}
         </button>
       </div>
     </article>
