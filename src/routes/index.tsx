@@ -28,23 +28,23 @@ function Home() {
         <div className="relative mx-auto max-w-7xl px-6 py-32 md:py-48">
           <span className="inline-flex items-center gap-2 rounded-full border border-ember/40 bg-ember/10 px-3 py-1 text-xs font-medium uppercase tracking-widest text-ember">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ember" />
-            Nové beaty každý týden
+            prod. by h4sheesh
           </span>
           <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
-            Beaty, co <span className="text-gradient-ember">prostě jedou.</span>
+            Beaty, co <span className="text-gradient-ember">trefí do černýho.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Prémiová trap, hip-hop a R&B produkce. Okamžité stažení, jasná licence, kompletní mix — přímo od zdroje.
+            Trap, detroit, supertrap — syrový zvuk, čistý mix, žádný kompromisy. Stáhneš, nahraješ, vydáš.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link to="/beats" className="group flex items-center gap-2 rounded-full gradient-ember px-6 py-3 font-semibold text-primary-foreground shadow-ember transition-transform hover:scale-105">
-              Prohlédnout beaty <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              Projet katalog <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <button
               onClick={() => player.play(BEATS[0])}
               className="flex items-center gap-2 rounded-full border border-border bg-surface/60 px-6 py-3 font-semibold backdrop-blur transition-colors hover:border-ember hover:text-ember"
             >
-              <Play className="h-4 w-4" fill="currentColor" /> Pustit ukázku
+              <Play className="h-4 w-4" fill="currentColor" /> Pustit nejnovější
             </button>
           </div>
           <div className="mt-16 grid max-w-2xl grid-cols-3 gap-8 border-t border-border pt-8">
