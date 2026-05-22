@@ -1,8 +1,21 @@
 import { Play, Pause, X } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { player, usePlayer } from "@/lib/player-store";
 
 export function AudioBar() {
   const { current, playing } = usePlayer();
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
+
+  useEffect(() => {
+    const win = iframeRef.current?.contentWindow;
+    if (!win || !current) return;
+    const cmd = playing ? "playVideo" : "pauseVideo";
+    win.postMessage(
+      JSON.stringify({ event: "command", func: cmd, args: "" }),
+      "*",
+    );
+  }, [playing, current]);
+
   if (!current) return null;
 
   return (
@@ -32,10 +45,18 @@ export function AudioBar() {
         >
           {playing ? <Pause className="h-5 w-5" fill="currentColor" /> : <Play className="h-5 w-5 translate-x-0.5" fill="currentColor" />}
         </button>
-        <button onClick={() => player.stop()} className="text-muted-foreground hover:text-foreground">
+        <button onClick={() => player.stop()} className="text-muted-foreground hover:text-foreground" aria-label="Zavřít přehrávač">
           <X className="h-5 w-5" />
         </button>
       </div>
+      <iframe
+        ref={iframeRef}
+        key={current.id}
+        title={current.title}
+        src={`https://www.youtube.com/embed/${current.youtubeId}?autoplay=1&enablejsapi=1&playsinline=1`}
+        allow="autoplay; encrypted-media"
+        className="pointer-events-none absolute h-0 w-0 opacity-0"
+      />
     </div>
   );
 }
