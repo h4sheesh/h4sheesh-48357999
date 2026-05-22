@@ -36,7 +36,7 @@ export function BeatCard({ beat }: { beat: Beat }) {
             <h3 className="truncate font-display text-lg font-semibold">{beat.title}</h3>
             <p className="mt-0.5 text-xs uppercase tracking-wider text-muted-foreground">{beat.genre} · {beat.duration}</p>
           </div>
-          <span className="shrink-0 font-display text-lg font-bold text-ember">${beat.price}</span>
+          <span className="shrink-0 font-display text-lg font-bold text-ember">{beat.price} Kč</span>
         </div>
         <button
           onClick={() => player.addToCart(beat)}

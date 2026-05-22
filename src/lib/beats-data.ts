@@ -12,7 +12,7 @@ export type Beat = {
   youtubeId: string;
 };
 
-const yt = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+const yt = (id: string) => `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
 
 export const BEATS: Beat[] = [
   {
