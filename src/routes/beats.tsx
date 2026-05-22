@@ -7,30 +7,30 @@ import { BeatCard } from "@/components/beat-card";
 export const Route = createFileRoute("/beats")({
   head: () => ({
     meta: [
-      { title: "All Beats — h4sheesh" },
-      { name: "description", content: "Browse the full beat catalog. Filter by genre, BPM, and key." },
+      { title: "Všechny beaty — h4sheesh" },
+      { name: "description", content: "Procházej celý katalog beatů. Filtruj podle žánru, BPM a tóniny." },
     ],
   }),
   component: BeatsPage,
 });
 
-const GENRES = ["All", "Trap", "Hip-Hop", "Drill", "R&B"];
+const GENRES = ["Vše", "Trap", "Hip-Hop", "Drill", "R&B"];
 
 function BeatsPage() {
   const [q, setQ] = useState("");
-  const [genre, setGenre] = useState("All");
+  const [genre, setGenre] = useState("Vše");
 
   const filtered = BEATS.filter((b) => {
     const matchesQ = !q || b.title.toLowerCase().includes(q.toLowerCase()) || b.tags.some((t) => t.includes(q.toLowerCase()));
-    const matchesG = genre === "All" || b.genre === genre;
+    const matchesG = genre === "Vše" || b.genre === genre;
     return matchesQ && matchesG;
   });
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-16">
-      <p className="text-xs font-medium uppercase tracking-widest text-ember">Catalog</p>
-      <h1 className="mt-2 font-display text-5xl font-bold md:text-6xl">All Beats</h1>
-      <p className="mt-3 text-muted-foreground">{BEATS.length} releases · updated weekly</p>
+      <p className="text-xs font-medium uppercase tracking-widest text-ember">Katalog</p>
+      <h1 className="mt-2 font-display text-5xl font-bold md:text-6xl">Všechny beaty</h1>
+      <p className="mt-3 text-muted-foreground">{BEATS.length} skladeb · aktualizováno týdně</p>
 
       <div className="mt-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div className="relative max-w-md flex-1">
@@ -38,7 +38,7 @@ function BeatsPage() {
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Search beats, tags..."
+            placeholder="Hledat beat, tagy..."
             className="w-full rounded-full border border-border bg-surface py-3 pl-10 pr-4 text-sm outline-none transition-colors focus:border-ember"
           />
         </div>
@@ -61,7 +61,7 @@ function BeatsPage() {
         {filtered.map((b) => <BeatCard key={b.id} beat={b} />)}
       </div>
       {filtered.length === 0 && (
-        <p className="mt-20 text-center text-muted-foreground">No beats match your search.</p>
+        <p className="mt-20 text-center text-muted-foreground">Žádné beaty neodpovídají hledání.</p>
       )}
     </section>
   );
