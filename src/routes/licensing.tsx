@@ -14,21 +14,21 @@ export const Route = createFileRoute("/licensing")({
 const TIERS = [
   {
     name: "Basic",
-    price: 899,
+    price: 500,
     desc: "MP3 bez tagu · až 5 000 streamů",
     perks: ["MP3 soubor", "Použití pro nahrávání skladby", "Distribuce do 5 000 streamů", "1 videoklip", "Neziskové živé vystoupení"],
     featured: false,
   },
   {
     name: "Premium",
-    price: 1990,
+    price: 2000,
     desc: "WAV + stopy · až 100 000 streamů",
     perks: ["MP3 + WAV + stopy", "Až 100 000 streamů", "Neomezeně videoklipů", "Placená živá vystoupení", "Rádiové vysílání (2 stanice)"],
     featured: true,
   },
   {
     name: "Exkluzivní",
-    price: 12500,
+    price: 5000,
     desc: "Plné vlastnictví · beat zmizí z obchodu",
     perks: ["Všechny soubory (MP3, WAV, stopy)", "Neomezené streamy a prodeje", "Beat stažen z katalogu", "Plná vysílací práva", "Kupující se stává jediným vlastníkem"],
     featured: false,
